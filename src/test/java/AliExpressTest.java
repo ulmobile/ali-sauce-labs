@@ -55,7 +55,7 @@
             public void setup () throws MalformedURLException {
 
                 DesiredCapabilities capabilities = new DesiredCapabilities();
-                capabilities.setCapability("testobjectApiKey", "39A15FAEB5F342F897D6843DE2A4BD8C");
+                capabilities.setCapability("testobjectApiKey", "DD5EC80C783444D8BCCE9D3118DE11EA");
                 capabilities.setCapability("platformName", "Android");
                 capabilities.setCapability("platformVersion", "8.1.0");
                 capabilities.setCapability("deviceName", "LG Nexus 5X Free");
@@ -106,86 +106,6 @@
                 (By.id("android:id/message"))).getAttribute("text");
 
         Assert.assertEquals(expectedText, "Account does not exist. Please register an account to start shopping.");
-    }
-
-    @Test
-    public void openSideMenuBySwipeTest () throws InterruptedException {
-
-        //wait home page
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.ImageView[1]")));
-
-        Dimension size = driver.manage().window().getSize();
-
-        int anchor = (int) (size.height * 0.5);
-        int startPoint = (int) (size.width * 0.01);
-        int endPoint = (int) (size.width * 0.7);
-
-        TouchAction action = new TouchAction(driver)
-                .press(point(startPoint, anchor))
-                .moveTo(point(endPoint, anchor))
-                .release().perform();
-
-        //wait to account
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.id("com.alibaba.aliexpresshd:id/chosen_account_view")));
-
-        action
-                .press(point(endPoint, anchor))
-                .moveTo(point(startPoint, anchor))
-                .release().perform();
-
-        sleep(5000);
-    }
-
-    @Test
-    public void findAppleTest () throws InterruptedException {
-
-        //Click find field
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.id("com.alibaba.aliexpresshd:id/search_hint"))).click();
-
-        //Send text
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-            (By.id("com.alibaba.aliexpresshd:id/abs__search_src_text"))).sendKeys("apple");
-
-        //84 -->  "KEYCODE_SEARCH"
-        ((AndroidDriver)driver).pressKeyCode(84);
-        //((AndroidDriver)driver).pressKey(new KeyEvent(AndroidKey.SEARCH));
-        sleep(2000);
-
-    }
-
-    @Test
-    public void signOrderByTest() throws InterruptedException {
-
-        //Click to all_categories
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.ImageView"))).click();
-
-        //Click to computers
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.FrameLayout[7]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView"))).click();
-
-
-        //Click to periferials
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]/android.widget.RelativeLayout/android.widget.FrameLayout[4]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView"))).click();
-
-        //Click to mouses
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ImageView"))).click();
-
-        //Click to orders
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.id("com.alibaba.aliexpresshd:id/search_view_more_label"))).click();
-
-        //Click to from high to small
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[3]/android.widget.RelativeLayout/android.widget.TextView"))).click();
-
-        //For see result
-        sleep(3000);
     }
 
             @AfterMethod
